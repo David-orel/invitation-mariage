@@ -1,0 +1,204 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitation de Mariage – David & Laurene</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Open+Sans:wght@300;400&display=swap');
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f0f8ff; /* bleu ciel très clair */
+            color: #2b3a55;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        header {
+            /* 💙 Remplace le lien ci-dessous par le nom de ta photo locale */
+            background: linear-gradient(rgba(173, 216, 230, 0.4), rgba(173, 216, 230, 0.6)), url('daren.jpeg') center/cover no-repeat;
+            color: white;
+            padding: 120px 20px;
+            position: relative;
+        }
+
+            header::after {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: rgba(0, 0, 30, 0.2);
+            }
+
+            header h1, header p {
+                position: relative;
+                z-index: 1;
+            }
+
+            header h1 {
+                font-family: 'Great Vibes', cursive;
+                font-size: 4em;
+                margin: 0;
+                color: #fff;
+            }
+
+            header p {
+                font-size: 1.5em;
+                margin-top: 10px;
+                font-weight: 300;
+                color: #eaf6fb;
+            }
+
+        section {
+            padding: 50px 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .details {
+            background: #ffffff;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            border-top: 8px solid #7ec8e3;
+        }
+
+        .names {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.8em;
+            color: #5dade2;
+            margin-bottom: 10px;
+        }
+
+        .date {
+            font-size: 1.5em;
+            margin-bottom: 25px;
+            color: #2e4a62;
+        }
+
+        /* Compte à rebours */
+        #countdown {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .count-box {
+            background: #eaf6fb;
+            border-radius: 10px;
+            padding: 15px 20px;
+            min-width: 80px;
+        }
+
+            .count-box span {
+                display: block;
+                font-size: 2em;
+                font-weight: bold;
+                color: #5dade2;
+            }
+
+        .rsvp {
+            margin-top: 30px;
+        }
+
+            .rsvp a {
+                display: inline-block;
+                background-color: #5dade2;
+                color: white;
+                padding: 12px 25px;
+                border-radius: 8px;
+                text-decoration: none;
+                font-weight: bold;
+                transition: 0.3s;
+            }
+
+                .rsvp a:hover {
+                    background-color: #3498db;
+                }
+
+        footer {
+            background-color: #5dade2;
+            color: white;
+            padding: 20px;
+            font-size: 0.9em;
+        }
+
+        audio {
+            margin-top: 20px;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>David & Laurene</h1>
+        <p>Nous nous marions !</p>
+    </header>
+
+    <section>
+        <div class="details">
+            <p class="names">David Kabala & Laurene Asemba</p>
+            <p class="date">Vendredi 27 Août 2027</p>
+            <p>Venez célébrer notre amour et partager un moment magique avec nous.</p>
+            <p>
+                📍 Cérémonie : Église Ambassade du ciel, Bandal – 15h00<br>
+                🎉 Réception : Pullman Hôtel – à partir de 18h30
+            </p>
+
+            <!-- Compte à rebours -->
+            <div id="countdown">
+                <div class="count-box"><span id="days">00</span>Jours</div>
+                <div class="count-box"><span id="hours">00</span>Heures</div>
+                <div class="count-box"><span id="minutes">00</span>Min</div>
+                <div class="count-box"><span id="seconds">00</span>Sec</div>
+            </div>
+
+            <div class="rsvp">
+                <a href="https://forms.gle/votre-lien-rsvp" target="_blank">Confirmer votre présence</a>
+            </div>
+
+            <!-- Musique romantique -->
+            <audio controls autoplay loop>
+                <source src="https://cdn.pixabay.com/audio/2023/03/15/audio_97e0407e60.mp3" type="audio/mpeg">
+                Votre navigateur ne supporte pas la lecture audio.
+            </audio>
+
+        </div>
+    </section>
+
+    <footer>
+        <p>Avec tout notre amour 💙 – David & Laurene</p>
+    </footer>
+
+    <script>
+        // Date du mariage
+        const weddingDate = new Date("August 27, 2027 15:00:00").getTime();
+
+        const countdown = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days;
+            document.getElementById("hours").innerText = hours;
+            document.getElementById("minutes").innerText = minutes;
+            document.getElementById("seconds").innerText = seconds;
+
+            if (distance < 0) {
+                clearInterval(countdown);
+                document.getElementById("countdown").innerHTML = "<p>💞 Le grand jour est arrivé ! 💞</p>";
+            }
+        }, 1000);
+    </script>
+
+</body>
+</html>
